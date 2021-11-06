@@ -1,6 +1,7 @@
 package com.company;
 import java.util.Scanner;
-import static com.company.Order.order;
+
+import static com.company.Order.*;
 
 public class Main
 {
@@ -8,11 +9,13 @@ public class Main
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Pizza Project! You will be making you own Pizza!");
-        while(Order.active)
-        {
-            order(sc);
-        }
-        System.out.println(Order.orderform);
+        //while(Order.active)
+       // {
+            //orderCrust(sc);
+            //orderSauce(sc);
+            orderToppings(sc);
+        //}
+        System.out.println("\n" + Order.orderform);
     }
 }
 
