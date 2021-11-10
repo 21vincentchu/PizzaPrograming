@@ -6,44 +6,16 @@ import static com.company.Validation.validateInput;
 public class Order
 {
     public static ArrayList<String> orderform = new ArrayList<>();
-    //public static boolean active = true;
-
-    public static void order(Scanner sc)
-    {
-        border(50);
-        System.out.println("Options");
-        System.out.println("1: Select Crust");
-        System.out.println("2: Select Sauce");
-        System.out.println("3: Select Toppings");
-        System.out.println("4: See current Order");
-
-        int option = validateInput(sc, 1, 4,"Not an option", "Select Between 1-4");
-        switch(option)
-        {
-            case 1:
-                orderCrust(sc);
-                break;
-            case 2:
-                orderSauce(sc);
-                break;
-            case 3:
-                orderToppings(sc);
-                break;
-            case 4:
-                System.out.println(orderform);
-                order(sc);
-        }
-    }
 
     public static void orderCrust(Scanner sc)
     {
+        Print.border(75);
         System.out.println("Please Choose One Crust Option");
-        border(50);
         System.out.println("Options");
         System.out.println("1: Regular Crust");
         System.out.println("2: Gluten Free Crust");
 
-        int option = validateInput(sc, 1, 2, "Not an option", "Enter 1 - 2");
+        int option = validateInput(sc, 1, 2, "Not an option", "Choose either 1 or 2");
         switch(option)
         {
             case 1:
@@ -59,134 +31,181 @@ public class Order
 
     public static void orderSauce(Scanner sc)
     {
+        Print.border(75);
         System.out.println("Please Choose One Sauce Option");
-        border(50);
-        System.out.println("options");
-        System.out.println("1: White Sauce");
-        System.out.println("2: Tomato Sauce");
-        System.out.println("3: Balsamic Vinegar");
+        System.out.println("1: White Sauce 2: Tomato Sauce 3: Balsamic Vinegar");
 
-        int option = validateInput(sc, 1, 3,"Not an option", "Select between 1 -3");
+        int option = validateInput(sc, 1, 3,"Not an option", "Select between 1-3");
         switch(option)
         {
             case 1:
                 System.out.println("WHITE SAUCE ADDED");
                 orderform.add("White Sauce");
+                Print.border(75);
                 break;
             case 2:
                 System.out.println("TOMATO SAUCE ADDED");
-                orderform.add("Tomato sauce");
+                orderform.add("Tomato Sauce");
+                Print.border(75);
                 break;
             case 3:
                 System.out.println("BALSAMIC VINEGAR ADDED");
                 orderform.add("Balsamic Vinegar");
+                Print.border(75);
+                break;
         }
 
     }
 
     public static void orderToppings(Scanner sc)
     {
-        boolean contine = true;
-        System.out.println("Please choose one ingredient option");
-        System.out.println("1: pizza cheese \t 2: Diced onion 3: Diced Green Onion");
-        int option = validateInput(sc, 1, 12, "Not an option", "Select between 1 -12");
-        switch(option)
-        {
-            case 1:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("pizza cheese");
-                orderform.add("pizza cheese");
-                break;
-            case 2:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("Diced Onions");
-                orderform.add("Diced Onions");
-                break;
-            case 3:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("Diced Green Onions");
-                orderform.add("Diced Green Onions");
-                break;
-            case 4:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("Pepperoni");
-                break;
-            case 5:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("Sliced Mushrooms");
-                break;
-            case 6:
-                System.out.println("Please choose one amount\n1: 1/4 cup \t\t 2: 1/2 cup");
-                printcup(sc);
-                System.out.print("diced jalapenos");
-                break;
-            case 7:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("sardines");
-                break;
-            case 8:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("pineapple chuncks");
-                break;
-            case 9:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("tofu");
-                break;
-            case 10:
-                System.out.println(printChoose());
-                printcup(sc);
-                System.out.print("Ham Chunks");
-                break;
-            case 11:
-                System.out.println("Please choose one amount\n1: 1/4 cup \t\t 2: 1/2 cup");
-                printcup(sc);
-                System.out.print("Dry Red pepper");
-                break;
-            case 12:
-                System.out.println("Please choose one amount\n1: 1/4 cup \t\t 2: 1/2 cup");
-                printcup(sc);
-                System.out.print("dry basil");
-                break;
+        boolean keepGoing = true;
+        String userInput;
+        while(keepGoing) {
+            System.out.println("Please choose one ingredient option");
+            System.out.println("1: pizza cheese \t 2: Diced onion \t   3: Diced Green pepper\n4: Pepperoni \t     5: Sliced mushroom    6: Diced jalapenos \n7: Sardines \t \t 8: Pineapple Chunks   9: Tofu \n10: Ham Chunks \t \t 11: Dry red pepper    12: Dried Basil");
 
+            int option = validateInput(sc, 1, 12, "Not an option select either 1 to 12", "Select between 1-12");
+            switch(option)
+            {
+                case 1:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Pizza Cheese")) {
+                        System.out.println("\n");
+                        orderform.add("Pizza Cheese");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR PIZZA CHEESE\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 2:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Diced Onions")) {
+                        System.out.println("\n");
+                        orderform.add("Diced Onions");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR DICED ONIONS\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 3:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Diced Green Onions")) {
+                        System.out.println("\n");
+                        orderform.add("Diced Green Onions");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR DICED GREEN ONIONS\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 4:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Pepperoni")) {
+                        System.out.println("\n");
+                        orderform.add("Pepperoni");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR PEPPERONI \n");
+                    }
+                    Print.border(75);
+                    break;
+                case 5:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Sliced Mushrooms")) {
+                        System.out.println("\n");
+                        orderform.add("Sliced Mushrooms");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR SLICED MUSHROOMS\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 6:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Diced Jalapenos")) {
+                        System.out.println("\n");
+                        orderform.add("Diced Jalapenos");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR DICED JALAPENOS\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 7:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Sardines")) {
+                        System.out.println("\n");
+                        orderform.add("Sardines");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR SARDINES\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 8:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Pineapple Chunks")) {
+                        System.out.println("\n");
+                        orderform.add("Pineapple Chunks");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR PINEAPPLE CHUNKS\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 9:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Tofu")) {
+                        System.out.println("\n");
+                        orderform.add("Tofu");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR TOFU\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 10:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Ham Chunks")) {
+                        System.out.println("\n");
+                        orderform.add("Ham Chunks");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR HAM CHUNKS\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 11:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Dry Red Pepper"))
+                    {
+                        System.out.println("\n");
+                        orderform.add("Dry Red Pepper");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR DRY RED PEPPER\n");
+                    }
+                    Print.border(75);
+                    break;
+                case 12:
+                    System.out.println(Print.printChoose());
+                    Print.printcup(sc);
+                    if (Check.checkifavaliable("Dry Basil")) {
+                        System.out.println("\n");
+                        orderform.add("Dry Basil");
+                    }else {
+                        System.out.println("REACHED MAX INGREDIENTS FOR DRY BASIL\n");
+                    }
+                    Print.border(75);
+                    break;
 
+            }
+            System.out.println("\nDo you want to keep going? (yes or no)");
+            userInput = sc.next();
+            keepGoing = userInput.equalsIgnoreCase("yes");
         }
-    }
-
-    public static void printcup(Scanner sc)
-    {
-        int option = validateInput(sc, 1, 2,"Not an option", "Select between 1 -2");
-        String cup1 = "1/4 cup";
-        String cup2 = "1/2 cup";
-        switch(option)
-        {
-            case 1:
-                System.out.print("You choose 1/4 cup of ");
-                break;
-            case 2:
-                System.out.println("You choose 1/2 cup of ");
-                break;
-        }
-    }
-
-    public static String printChoose()
-    {
-        return "Please choose one amount\n1: 1/4 cup \t\t 2: 1/2 cup";
-    }
-
-    public static void border (int length)
-    {
-        for (int i = 0; i < length; i++)
-        {
-            System.out.print("*");
-        }
-        System.out.print("\n");
     }
 }
