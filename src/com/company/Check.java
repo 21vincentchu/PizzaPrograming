@@ -1,10 +1,12 @@
 package com.company;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Check
 {
-    public static Map<String, Integer> othermap = new HashMap<>()
+    public static int count = 0;
+    public static Map<String, Integer> othermap = Collections.unmodifiableMap(new HashMap<>()
     {
         {
             put("Pizza Cheese", 2);
@@ -20,20 +22,33 @@ public class Check
             put("Dry Red pepper", 4);
             put("Dry Basil", 2);
         }
-    };
+    });
 
-    public static boolean checkifavaliable(String input) {
-        if (othermap.containsKey(input)) {
-            if (othermap.get(input) > 0) {
-                System.out.print(input);
-                int value = othermap.get(input);
-                othermap.replace(input, value - 1);
-                return true;
-            }else {
+    public static boolean checkifavaliable(String input)
+    {
+        boolean result = false;
+        if (othermap.containsKey(input))
+        {
+            if (othermap.get(input) > 0)
+            {
+                count += 1;
+                if (count > 6)
+                {
+                    System.out.println("You have reached the max of toppings of 6");
+                }
+                else
+                {
+                    System.out.print(input);
+                    int value = othermap.get(input);
+                    othermap.replace(input, value - 1);
+                    result = true;
+                }
+            }
+            else
+            {
                 System.out.println(input);
-                return false;
             }
         }
-        return false;
+        return result;
     }
 }
