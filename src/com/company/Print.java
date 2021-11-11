@@ -6,7 +6,7 @@ public class Print
 {
     public static void printcup(Scanner sc)
     {
-        int option = validateInput(sc, 1, 2,"Not an option Select between 1 or 2", "");
+        var option = validateInput(sc, 1, 2,"Not an option Select between 1 or 2", "");
 
         switch(option)
         {
