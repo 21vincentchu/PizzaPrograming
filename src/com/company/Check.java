@@ -1,12 +1,11 @@
 package com.company;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Check
 {
     public static int count = 0;
-    public static Map<String, Integer> othermap = Collections.unmodifiableMap(new HashMap<>()
+    public static Map<String, Integer> othermap = new HashMap<>()
     {
         {
             put("Pizza Cheese", 2);
@@ -22,7 +21,7 @@ public class Check
             put("Dry Red pepper", 4);
             put("Dry Basil", 2);
         }
-    });
+    };
 
     public static boolean checkifavaliable(String input)
     {
